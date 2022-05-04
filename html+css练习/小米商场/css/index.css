@@ -1,0 +1,605 @@
+/* 第一层导航栏 */
+.topbar-wrapper {
+    width: 100%;
+    line-height: 40px;
+    height: 40px;
+    background-color: #333;
+}
+
+.topbar a {
+    font-size: 12px;
+    color: #b0b0b0;
+    display: block;
+}
+
+.topbar a:hover {
+    color: white;
+}
+
+.topbar .line {
+    color: #424242;
+    font-size: 12px;
+    margin: 0 8px;
+}
+
+.service,
+.topbar li {
+    float: left;
+}
+
+/* 设置app下拉的小三角 */
+.app {
+    position: relative;
+}
+
+.app::after {
+    content: '';
+    display: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    border-top: none;
+    border-bottom-color: white;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+
+.app:hover .qrcode,
+.app:hover::after {
+    display: block;
+    height: 148px;
+}
+
+.app .qrcode {
+    /* display: none; */
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+    left: -40px;
+    width: 124px;
+    line-height: 100%;
+    text-align: center;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+    transition: height 0.5s;
+    z-index: 9999;
+}
+
+.app .qrcode img {
+    width: 90px;
+    margin: 17px;
+    margin-bottom: 10px;
+}
+
+.app .qrcode span {
+    font-size: 14px;
+    color: #000;
+}
+
+.shop-cart,
+.user-info {
+    float: right;
+}
+
+.shop-cart {
+    margin-left: 26px;
+}
+
+.shop-cart a {
+    width: 120px;
+    background-color: #424242;
+    text-align: center;
+}
+
+.shop-cart:hover a {
+    background-color: white;
+    color: #ff6700;
+}
+
+.shop-cart i {
+    margin-right: 2px;
+}
+
+.shop-cart {
+    position: relative;
+}
+
+.shopping {
+    position: absolute;
+    width: 316px;
+    right: 0;
+    height: 0;
+    overflow: hidden;
+    font-size: 14px;
+    color: #000;
+    line-height: 100px;
+    text-align: center;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+    transition: height 0.5s;
+
+}
+
+.shop-cart:hover .shopping {
+    height: 100px;
+}
+
+/* 第二层导航栏 */
+
+.header {
+    height: 100px;
+}
+
+.header-wrapper {
+    position: relative;
+}
+
+.header .logo {
+    float: left;
+    width: 55px;
+    height: 55px;
+    margin-top: 22px;
+    position: relative;
+    overflow: hidden;
+}
+
+.header .logo a {
+    background-image: url(../img/mi-logo.png);
+    border-radius: 35%;
+    background-color: #ff6700;
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    background-position: center;
+    left: 0;
+    transition: left 0.5s;
+
+}
+
+.header .logo .home {
+    background-image: url(../img/mi-home.png);
+    left: -55px;
+}
+
+.header .logo:hover .mi {
+    left: 55px;
+}
+
+.header .logo:hover .home {
+    left: 0;
+}
+
+/* 第二层导航栏的文字部分 */
+.nav-wrapper {
+    margin-left: 7px;
+    float: left;
+}
+
+
+.nav {
+    height: 100px;
+    line-height: 100px;
+    padding-left: 58px;
+}
+
+.nav>li {
+    float: left;
+}
+
+.all-goods-wrapper {
+    position: relative;
+}
+
+/* 第二层导航栏的左侧导航条 */
+.left-menu {
+    width: 234px;
+    height: 420px;
+    padding: 20px 0;
+    background-color: rgba(0, 0, 0, .4);
+    left: -120px;
+    position: absolute;
+    z-index: 999;
+}
+
+ul .left-menu li a {
+    line-height: 42px;
+    display: block;
+    color: #fff;
+    padding: 0 20px 0 30px;
+    margin-right: 0;
+    font-size: 14px;
+}
+
+ul .left-menu li a:hover {
+    background-color: #ff6700;
+    color: white;
+}
+
+.left-menu a i {
+    float: right;
+    line-height: 42px;
+    font-size: 20px;
+}
+
+
+
+.nav-wrapper li a {
+    display: block;
+    font-size: 16px;
+    margin-right: 20px;
+}
+
+.all-goods {
+    visibility: hidden;
+}
+
+.nav-wrapper li a:hover {
+    color: #ff6700;
+}
+
+.goods-info {
+    width: 100%;
+    height: 0px;
+    background-color: white;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    transition: height 0.3s;
+    z-index: 9999;
+}
+
+.nav .show-goods:hover~.goods-info,
+.goods-info:hover {
+    height: 228px;
+    border-top: 1px solid rgb(224, 224, 224);
+    box-shadow: 0 4px 2px rgba(0, 0, 0, .2);
+}
+
+/* 搜索栏 */
+.search-wrapper {
+    width: 296px;
+    height: 50px;
+    float: right;
+    margin-top: 25px;
+}
+
+
+.search-wrapper .search-inp {
+    box-sizing: border-box;
+    width: 244px;
+    border: none;
+    float: left;
+    padding: 0 10px;
+    height: 50px;
+    font-size: 16px;
+    outline: none;
+    border: 1px solid rgb(224, 224, 224);
+}
+
+.search-wrapper .search-inp:focus,
+.search-wrapper .search-inp:focus+button {
+    border-color: #ff6700;
+}
+
+
+.search-wrapper .search-btn {
+    float: left;
+    height: 50px;
+    width: 52px;
+    padding: 0;
+    border: none;
+    background-color: #fff;
+    color: #616161;
+    font-size: 16px;
+    border: 1px solid rgb(224, 224, 224);
+    border-left: none;
+}
+
+.search-btn:hover {
+    background-color: #ff6700;
+    color: white;
+    border: none;
+}
+
+/* 主页图片 */
+/* 设置banner */
+.banner {
+    position: relative;
+    height: 460px;
+}
+
+.banner .img-list li {
+    position: absolute;
+}
+
+.banner img {
+    width: 100%;
+    vertical-align: top;
+}
+
+/* 图片转化的点 */
+.pointer {
+    position: absolute;
+    bottom: 22px;
+    right: 35px;
+}
+
+.pointer a {
+    float: left;
+    width: 6px;
+    height: 6px;
+    background-color: rgba(0, 0, 0, .4);
+    border: 2px rgba(255, 255, 255, .4) solid;
+    border-radius: 50%;
+    margin-left: 6px;
+}
+
+.pointer a:hover {
+    background-color: rgba(255, 255, 255, .4);
+    border-color: rgba(0, 0, 0, .4);
+}
+
+.prev-next a {
+    background-image: url(../img/icon-slides.png);
+    position: absolute;
+    width: 40px;
+    height: 70px;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+}
+
+.prev-next .prev {
+    left: 234px;
+    background-position: -84px;
+}
+
+.prev-next .next {
+    background-position: -125px;
+    right: 0;
+}
+
+.prev-next .prev:hover {
+    background-position: 0;
+}
+
+.prev-next .next:hover {
+    background-position: -42px;
+}
+
+
+/* -- 固定定位的工具条 -- */
+.back-top {
+    width: 26px;
+    height: 206px;
+    background-color: #ff6700;
+    bottom: 70px;
+    position: fixed;
+    right: 50%;
+    margin-right: -639px;
+}
+
+/* 设置下部的广告区域 */
+.ad {
+    margin-top: 14px;
+}
+
+.ad .shortcut,
+.ad .imgs,
+.ad li {
+    float: left;
+}
+
+
+.shortcut {
+    width: 228px;
+    height: 168px;
+    background-color: #5f5750;
+    margin-right: 14px;
+    padding-top: 2px;
+    padding-left: 6px;
+}
+
+.shortcut li {
+    position: relative;
+}
+
+.shortcut li::before {
+    content: '';
+    position: absolute;
+    width: 64px;
+    height: 1px;
+    background-color: #665e57;
+    top: 0;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+}
+
+.shortcut li::after {
+    content: '';
+    position: absolute;
+    height: 70px;
+    width: 1px;
+    background-color: #665e57;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto 0;
+}
+
+.shortcut a {
+    display: block;
+    color: #cfccca;
+    width: 76px;
+    height: 84px;
+    text-align: center;
+    overflow: hidden;
+    font-size: 12px;
+}
+
+.shortcut i {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+
+.ad .shortcut a:hover {
+    color: #fff;
+}
+
+.ad .imgs li {
+    width: 316px;
+    height: 170px;
+    margin-right: 15px;
+}
+
+.ad .imgs img {
+    width: 100%;
+}
+
+.ad .imgs img:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .1);
+}
+
+.ad .imgs li:last-child {
+    margin-right: 0;
+}
+
+/* 手机展示区*/
+.phone {
+    width: 100%;
+    background-color: #f5f5f5;
+    margin-top: 210px;
+}
+
+.phone-show img {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.phone-text,
+.wear-text {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.phone-font {
+    font-size: 22px;
+    color: #333;
+}
+
+.phone-more {
+    display: block;
+    font-size: 16px;
+    color: #424242;
+}
+
+.phone-more:hover,
+.phone-more:hover i {
+    color: #ff6700;
+}
+
+.phone-more i {
+    margin-left: 5px;
+    color: #b0b0b0;
+}
+
+.phone-imgs {
+    margin-top: 10px;
+    margin-bottom: 50px;
+    display: block;
+    height: 614px;
+}
+
+.phone-span-1 {
+    width: 234px;
+    height: 614px;
+    background: white;
+    float: left;
+    transition: all .3s;
+}
+
+.phone-span-1 img {
+    width: 100%;
+}
+
+.phone-span-2 {
+    height: 614px;
+    line-height: 100%;
+
+}
+
+.phone-span-2 .phone-civi {
+    width: 234px;
+    height: 260px;
+    background: white;
+    float: left;
+    margin-bottom: 14px;
+}
+
+.phone-civi {
+    text-align: center;
+    padding: 20px 0;
+    margin-left: 14px;
+    transition: all .3s;
+}
+
+.phone-civi-img {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 18px;
+}
+
+.phone-civi-img img {
+    width: 100%;
+}
+
+.phone-civi h3,
+.phone-civi-text {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.phone-civi h3 {
+    margin: 0 10px 2px;
+}
+
+.phone-civi-text {
+    color: #b0b0b0;
+    margin: 0 10px 10px;
+    height: 18px;
+    font-size: 12px;
+}
+
+.phone-price {
+    color: #ff6700;
+    margin: 0 10px 14px;
+}
+
+.phone-price del {
+    margin-left: 0.5em;
+    color: #b0b0b0;
+}
+
+.phone-civi:hover,
+.phone-span-1:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, .1)
+}
+
+.wear-more {
+    float: left;
+    margin-left: 5px;
+    font-size: 16px;
+}
+
+.wear-more:hover {
+    color: #ff6700;
+}

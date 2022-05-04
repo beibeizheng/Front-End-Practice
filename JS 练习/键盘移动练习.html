@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>键盘移动练习</title>
+    <style>
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+
+            document.onkeydown = function (event) {
+                event = event || window.event;
+                //定义一个变量，表示移动的速度
+                var speed = 10;
+
+                //当用户按了ctrl以后，速度加快
+                if (event.ctrlKey) {
+                    speed = 50;
+                }
+                //左 37； 上 38； 右39； 下 40；
+                switch (event.keyCode) {
+                    case 37:
+                        box1.style.left = box1.offsetLeft - speed + "px";
+                        break;
+                    case 39:
+                        box1.style.left = box1.offsetLeft + speed + "px";
+                        break;
+                    case 38:
+                        box1.style.top = box1.offsetTop - speed + "px";
+                        break;
+                    case 40:
+                        box1.style.top = box1.offsetTop + speed + "px";
+                        break;
+                }
+
+            }
+        }
+
+    </script>
+</head>
+
+
+<body>
+    <div id="box1"></div>
+</body>
+
+</html>

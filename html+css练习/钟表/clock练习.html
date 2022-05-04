@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .bg {
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+            margin-top: 100px;
+            border-radius: 50%;
+            background-color: beige;
+            /* border: 10px solid black; */
+            position: relative;
+        }
+
+        .bg>div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        .hour-wrapper {
+            height: 70%;
+            width: 70%;
+            animation: run 10s steps(60) infinite;
+        }
+
+        .hour {
+            height: 50%;
+            width: 6px;
+            background-color: #000;
+            margin: 0 auto;
+        }
+
+
+
+        @keyframes run {
+            from {
+                transform: rotateZ(0);
+            }
+
+            to {
+                transform: rotateZ(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg">
+        <!-- 设置时针 -->
+        <div class="hour-wrapper">
+            <div class="hour"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>
