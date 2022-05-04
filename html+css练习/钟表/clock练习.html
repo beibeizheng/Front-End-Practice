@@ -18,9 +18,10 @@
             margin: 0 auto;
             margin-top: 100px;
             border-radius: 50%;
-            background-color: beige;
             /* border: 10px solid black; */
             position: relative;
+            background-image: url(clock.png);
+            background-size: cover;
         }
 
         .bg>div {
@@ -33,9 +34,9 @@
         }
 
         .hour-wrapper {
-            height: 70%;
-            width: 70%;
-            animation: run 10s steps(60) infinite;
+            height: 60%;
+            width: 60%;
+            animation: run 7200s infinite;
         }
 
         .hour {
@@ -45,7 +46,31 @@
             margin: 0 auto;
         }
 
+        .min-wrapper {
+            height: 75%;
+            width: 75%;
+            animation: run 600s steps(60) infinite;
+        }
 
+        .min {
+            height: 50%;
+            width: 4px;
+            background-color: #000;
+            margin: 0 auto;
+        }
+
+        .second-wrapper {
+            height: 90%;
+            width: 90%;
+            animation: run 10s steps(60) infinite;
+        }
+
+        .second {
+            height: 50%;
+            width: 2px;
+            background-color: red;
+            margin: 0 auto;
+        }
 
         @keyframes run {
             from {
@@ -61,9 +86,17 @@
 
 <body>
     <div class="bg">
-        <!-- 设置时针 A -->
+        <!-- 设置时针  -->
         <div class="hour-wrapper">
             <div class="hour"></div>
+        </div>
+        <!-- 设置分针  -->
+        <div class="min-wrapper">
+            <div class="min"></div>
+        </div>
+        <!-- 设置秒针   -->
+        <div class="second-wrapper">
+            <div class="second"></div>
         </div>
     </div>
 
