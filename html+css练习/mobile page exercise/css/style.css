@@ -1,0 +1,124 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.w,
+header,
+.header-img,
+.menu,
+.course-list {
+  width: 17.325rem;
+  margin: 0 auto;
+}
+html {
+  font-size: 5.3333vw;
+  background-color: #eff0f4;
+}
+a {
+  text-decoration: none;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  height: 4.375rem;
+  line-height: 4.375rem;
+  align-items: center;
+  color: #24253c;
+}
+header .top-bar a {
+  font-size: 20px;
+  color: #999;
+}
+header .search a {
+  color: #5e5e60;
+  font-size: 20px;
+}
+.header-img img {
+  width: 100%;
+}
+.menu {
+  height: 7rem;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  align-items: flex-end;
+}
+.menu a {
+  height: 2.6rem;
+  line-height: 2.6rem;
+  color: white;
+  font-size: 18px;
+}
+.menu a i {
+  margin-right: 0.5rem;
+}
+.menu div {
+  border-radius: 0.25rem;
+  width: 8rem;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.menu .course {
+  background-color: #f47462;
+}
+.menu .star {
+  background-color: #c55efb;
+}
+.menu .subs {
+  background-color: #fc3e74;
+}
+.menu .download {
+  background-color: #2894fb;
+}
+.course-list .course-title {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.25rem;
+  margin-bottom: 1rem;
+}
+.course-list .course-title h2 {
+  font-size: 22px;
+  border-left: 3px solid #3a84ff;
+  padding-left: 16px;
+}
+.course-list .course-title .more {
+  color: #646466;
+}
+.course-list .course-info {
+  width: 18rem;
+  display: flex;
+  overflow: auto;
+}
+.course-list .course-info .course-box {
+  flex: none;
+  box-sizing: border-box;
+  background-color: #fff;
+  height: 8.13rem;
+  width: 8.25rem;
+  padding: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 0.6rem;
+}
+.course-list .course-info .course-box img {
+  width: 100%;
+}
+.course-list .course-info .course-box h3 {
+  font-size: 16px;
+}
+.course-list .course-info .course-box .tutor {
+  display: flex;
+  margin-bottom: 10px;
+}
+.course-list .course-info .course-box .tutor img {
+  width: 1rem;
+  margin-right: 6px;
+}
+.course-list .course-info .course-box .tutor p {
+  color: #646466;
+  font-size: 14px;
+}
+/*# sourceMappingURL=./style.css.map */
