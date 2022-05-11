@@ -7,45 +7,50 @@ a:hover {
 }
 header {
   background-color: black;
+}
+.header-warpper {
+  background-color: black;
   max-width: 1200px;
+  padding: 0 13px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-header .menu-icon {
-  padding-left: 13px;
+.header-warpper .menu-icon {
   height: 48px;
   position: relative;
+  width: 18px;
 }
-header .menu-icon li {
+.header-warpper .menu-icon li {
   border-bottom: 1px solid #fafafa;
   width: 20px;
   position: absolute;
   transform-origin: top left;
   transition: 0.5s;
 }
-header .menu-icon li:nth-child(1) {
+.header-warpper .menu-icon li:nth-child(1) {
   top: 18px;
 }
-header .menu-icon li:nth-child(2) {
+.header-warpper .menu-icon li:nth-child(2) {
   top: 24px;
 }
-header .menu-icon li:nth-child(3) {
+.header-warpper .menu-icon li:nth-child(3) {
   top: 30px;
 }
-header .menu-icon:hover li:nth-child(1) {
+.header-warpper .menu-icon:active li:nth-child(1) {
   transform: rotateZ(40deg);
 }
-header .menu-icon:hover li:nth-child(2) {
+.header-warpper .menu-icon:active li:nth-child(2) {
   opacity: 0;
 }
-header .menu-icon:hover li:nth-child(3) {
+.header-warpper .menu-icon:active li:nth-child(3) {
   transform: rotateZ(-40deg);
 }
-header .top-left:hover .nav {
+.header-warpper .top-left:active .nav {
   display: block;
 }
-header .top-left .nav {
+.header-warpper .top-left .nav {
   display: none;
   background-color: black;
   position: absolute;
@@ -54,29 +59,64 @@ header .top-left .nav {
   bottom: 0;
   right: 0;
 }
-header .top-left .nav li {
+.header-warpper .top-left .nav li {
   width: 80%;
   margin: 0 auto;
   border-bottom: 1px solid #757474;
 }
-header .top-left .nav a {
+.header-warpper .top-left .nav a {
   display: block;
   line-height: 44px;
   font-size: 14px;
 }
-header .top-left .nav:last-child a {
+.header-warpper .top-left .nav:last-child a {
   display: inline-block;
   margin-right: 6px;
 }
-header .top-left .nav span {
+.header-warpper .top-left .nav span {
   color: #fff;
   font-size: 14px;
 }
-.logo {
+.header-warpper .logo {
   display: block;
   width: 122px;
   height: 32px;
-  background-image: url('/image/clock.png');
-  background-size: cover;
+  background-image: url('../image/dff63979.sprites-index@2x.png');
+  background-size: 400px 400px;
+  background-position: top left;
+}
+@media only screen {
+}
+@media only screen and (min-width: 768px) {
+  .header-warpper .top-left {
+    order: 2;
+    flex: auto;
+  }
+  .header-warpper .top-left .menu-icon {
+    display: none;
+  }
+  .header-warpper .top-left .nav {
+    display: flex;
+    position: static;
+    padding: 0;
+    justify-content: space-around;
+  }
+  .header-warpper .top-left .nav li {
+    width: auto;
+    border-bottom: none;
+    margin: 0;
+  }
+  .header-warpper .top-left .nav li a {
+    line-height: 48px;
+  }
+  .header-warpper .top-left .nav li span {
+    display: none;
+  }
+  .header-warpper .logo {
+    order: 1;
+  }
+  .header-warpper .user-info {
+    order: 3;
+  }
 }
 /*# sourceMappingURL=./style.css.map */

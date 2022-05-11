@@ -10,23 +10,31 @@ a {
 
 header {
     background-color: black;
+}
+
+.header-warpper {
+    background-color: black;
     max-width: 1200px;
+    padding: 0 13px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
+
     .menu-icon {
-        padding-left: 13px;
         height: 48px;
         position: relative;
+        width: 18px;
 
         li {
             border-bottom: 1px solid #fafafa;
             width: 20px;
             position: absolute;
-            // 修改变形的原点
+            // Modify the origin of the transform
             transform-origin: top left;
-            transition: 0.5s
+            transition: 0.5s;
+
         }
 
         li:nth-child(1) {
@@ -42,17 +50,18 @@ header {
 
         }
 
-        &:hover {
+        &:active {
             li:nth-child(1) {
-                // 向下旋转
+                // Rotate downwards
                 transform: rotateZ(40deg);
             }
 
             li:nth-child(2) {
-                // 隐藏
+                // hidden
                 opacity: 0;
             }
 
+            // Rotate upwards
             li:nth-child(3) {
                 transform: rotateZ(-40deg);
             }
@@ -61,9 +70,9 @@ header {
 
     .top-left {
 
-        &:hover {
+        &:active {
 
-            //显示隐藏的菜单
+            //Show hidden menus
             .nav {
                 display: block;
             }
@@ -102,12 +111,62 @@ header {
         }
 
     }
+
+    .logo {
+        display: block;
+        width: 122px;
+        height: 32px;
+        background-image: url('./../image/dff63979.sprites-index@2x.png');
+        background-size: 400px 400px;
+        background-position: top left;
+    }
+
 }
 
-.logo {
-    display: block;
-    width: 122px;
-    height: 32px;
-    background-image: url('/image/clock.png');
-    background-size: cover;
+@media only screen {
+
+    // big screen 
+    @media (min-width: 768px) {
+        .header-warpper {
+            .top-left {
+                order: 2;
+                flex: auto;
+
+                .menu-icon {
+                    display: none;
+                }
+
+                .nav {
+                    display: flex;
+                    position: static;
+                    padding: 0;
+                    justify-content: space-around;
+
+                    li {
+                        width: auto;
+                        border-bottom: none;
+                        margin: 0;
+
+                        a {
+                            line-height: 48px;
+                        }
+
+                        span {
+                            display: none;
+                        }
+                    }
+                }
+            }
+
+            .logo {
+                order: 1;
+            }
+
+            .user-info {
+                order: 3;
+            }
+        }
+
+    }
+
 }
