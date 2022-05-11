@@ -1,0 +1,82 @@
+a {
+  text-decoration: none;
+  color: white;
+}
+a:hover {
+  color: #c5c4c4;
+}
+header {
+  background-color: black;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header .menu-icon {
+  padding-left: 13px;
+  height: 48px;
+  position: relative;
+}
+header .menu-icon li {
+  border-bottom: 1px solid #fafafa;
+  width: 20px;
+  position: absolute;
+  transform-origin: top left;
+  transition: 0.5s;
+}
+header .menu-icon li:nth-child(1) {
+  top: 18px;
+}
+header .menu-icon li:nth-child(2) {
+  top: 24px;
+}
+header .menu-icon li:nth-child(3) {
+  top: 30px;
+}
+header .menu-icon:hover li:nth-child(1) {
+  transform: rotateZ(40deg);
+}
+header .menu-icon:hover li:nth-child(2) {
+  opacity: 0;
+}
+header .menu-icon:hover li:nth-child(3) {
+  transform: rotateZ(-40deg);
+}
+header .top-left:hover .nav {
+  display: block;
+}
+header .top-left .nav {
+  display: none;
+  background-color: black;
+  position: absolute;
+  top: 48px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+header .top-left .nav li {
+  width: 80%;
+  margin: 0 auto;
+  border-bottom: 1px solid #757474;
+}
+header .top-left .nav a {
+  display: block;
+  line-height: 44px;
+  font-size: 14px;
+}
+header .top-left .nav:last-child a {
+  display: inline-block;
+  margin-right: 6px;
+}
+header .top-left .nav span {
+  color: #fff;
+  font-size: 14px;
+}
+.logo {
+  display: block;
+  width: 122px;
+  height: 32px;
+  background-image: url('/image/clock.png');
+  background-size: cover;
+}
+/*# sourceMappingURL=./style.css.map */
