@@ -2,18 +2,20 @@ import Vue from 'vue'
 import App from './App.vue'
 
 // Register global component
-import TypeNav from "@/pages/Home/TypeNav";
+import TypeNav from "@/components/TypeNav";
 Vue.component('TypeNav', TypeNav);
 
+// Register router
 import router from '@/router';
-//测试获取数据
-import { reqCategory } from '@/api';
-reqCategory();
+
+// Register store
+import store from '@/store';
 
 
 new Vue({
 
     render: h => h(App),
-    router //Registered Routes
-
+    router, //Registered Routes
+    // registered store
+    store
 }).$mount('#app');

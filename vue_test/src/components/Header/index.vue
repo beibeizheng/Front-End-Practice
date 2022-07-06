@@ -29,13 +29,7 @@
     <!--头部第二行 搜索区域-->
     <div class="bottom">
       <h1 class="logoArea">
-        <router-link
-          class="logo"
-          to="/home"
-          title="尚品汇"
-          href="###"
-          target="_blank"
-        >
+        <router-link class="logo" to="/home" title="尚品汇">
           <img src="./images/logo.png" alt="" />
         </router-link>
       </h1>
@@ -70,7 +64,10 @@ export default {
   },
   methods: {
     goSearch() {
-      this.$router.push({ name: "search", params: { keyword: this.keyword } });
+      this.$router.push({
+        name: "search",
+        params: { keyword: this.keyword || undefined },
+      });
     },
   },
 };
