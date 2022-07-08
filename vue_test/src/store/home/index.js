@@ -1,12 +1,20 @@
-import { reqCategory } from "@/api";
+import { reqCategory, reqGetBannerList, reqFloorList } from "@/api";
 
 
 const state = {
     categoryList: [],
+    bannerList: [],
+    floorList: []
 };
 const mutations = {
     CATEGORYLIST(state, categoryList) {
         state.categoryList = categoryList.slice(0, 16)
+    },
+    GETBANNERLIST(state, bannerList) {
+        state.bannerList = bannerList;
+    },
+    GETFLOORLIST(state, floorList) {
+        state.floorList = floorList;
     },
 
 };
@@ -15,6 +23,21 @@ const actions = {
         let result = await reqCategory();
         if (result.code == 200) {
             commit("CATEGORYLIST", result.data);
+        }
+    },
+
+    // get banner's data
+    async getBannerList({ commit }) {
+        let result = await reqGetBannerList();
+        if (result.code == 200) {
+            commit("GETBANNERLIST", result.data);
+        }
+    },
+    // get floor's data
+    async getFloorList({ commit }) {
+        let result = await reqFloorList();
+        if (result.code == 200) {
+            commit("GETFLOORLIST", result.data);
         }
     },
 
