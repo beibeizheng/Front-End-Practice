@@ -74,6 +74,12 @@ export default {
       }
     },
   },
+  mounted() {
+    // Clear keywords from the search bar
+    this.$bus.$on("clear", () => {
+      this.keyword = "";
+    });
+  },
 };
 </script>
 <style scoped lang="less">
@@ -155,8 +161,9 @@ export default {
 
         button {
           height: 32px;
-          width: 68px;
+          width: 64px;
           background-color: #ea4a36;
+          line-height: 0;
           border: none;
           color: #fff;
           float: left;

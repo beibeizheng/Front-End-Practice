@@ -11,38 +11,63 @@
             </li>
           </ul>
           <ul class="fl sui-tag">
-            <li class="with-x">手机</li>
-            <li class="with-x">iphone<i>×</i></li>
-            <li class="with-x">华为<i>×</i></li>
-            <li class="with-x">OPPO<i>×</i></li>
+            <li class="with-x" v-if="searchParams.categoryName">
+              {{ searchParams.categoryName }}
+              <i @click="removeCategoryName">x</i>
+            </li>
+
+            <li class="with-x" v-if="searchParams.keyword">
+              {{ searchParams.keyword }}
+              <i @click="removeKeyword">x</i>
+            </li>
+            <li class="with-x" v-if="searchParams.trademark">
+              {{ searchParams.trademark.split(":")[1] }}
+              <i @click="removeTrademark">x</i>
+            </li>
+
+            <li
+              class="with-x"
+              v-for="(attrValue, index) in searchParams.props"
+              :key="index"
+            >
+              {{ attrValue.split(":")[1] }}
+              <i @click="removeAttr(index)">x</i>
+            </li>
           </ul>
         </div>
 
         <!--selector-->
-        <SearchSelector />
+        <SearchSelector @trademarkInfo="trademarkInfo" @attrInfo="attrInfo" />
 
         <!--details-->
         <div class="details clearfix">
           <div class="sui-navbar">
             <div class="navbar-inner filter">
               <ul class="sui-nav">
-                <li class="active">
-                  <a href="#">综合</a>
+                <li :class="{ active: isSyn }" @click="changeOrder(1)">
+                  <a
+                    >综合<span
+                      v-show="isSyn"
+                      class="iconfont"
+                      :class="{
+                        'icon-jiantou': isDesc,
+                        'icon-jiantou1': isAsc,
+                      }"
+                    ></span>
+                  </a>
                 </li>
-                <li>
-                  <a href="#">销量</a>
-                </li>
-                <li>
-                  <a href="#">新品</a>
-                </li>
-                <li>
-                  <a href="#">评价</a>
-                </li>
-                <li>
-                  <a href="#">价格⬆</a>
-                </li>
-                <li>
-                  <a href="#">价格⬇</a>
+                <li :class="{ active: isPrice }" @click="changeOrder(2)">
+                  <a
+                    >价格
+                    <span
+                      v-show="isPrice"
+                      class="iconfont"
+                      :class="{
+                        'icon-jiantou': isDesc,
+                        'icon-jiantou1': isAsc,
+                      }"
+                    ></span>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -144,7 +169,7 @@ export default {
         category3Id: "",
         categoryName: "",
         keyword: "",
-        order: "",
+        order: "1:desc",
         pageNo: 1,
         pageSize: 10,
         props: [],
@@ -167,10 +192,88 @@ export default {
   },
   computed: {
     ...mapGetters(["goodsList"]),
+    isSyn() {
+      return this.searchParams.order.indexOf("1") != -1;
+    },
+    isPrice() {
+      return this.searchParams.order.indexOf("2") != -1;
+    },
+    isDesc() {
+      return this.searchParams.order.indexOf("desc") != -1;
+    },
+    isAsc() {
+      return this.searchParams.order.indexOf("asc") != -1;
+    },
   },
+
   methods: {
     getData() {
       this.$store.dispatch("getSearchList", this.searchParams);
+    },
+    removeCategoryName() {
+      this.searchParams.categoryName = undefined;
+      this.searchParams.category1Id = undefined;
+      this.searchParams.category2Id = undefined;
+      this.searchParams.category3Id = undefined;
+      this.getData();
+      if (this.$route.params) {
+        this.$router.push({ name: "search", params: this.$route.params });
+      }
+    },
+    removeKeyword() {
+      this.searchParams.keyword = undefined;
+      this.getData();
+      // Clear keywords from the search field in the component Header
+      this.$bus.$emit("clear");
+      if (this.$route.query) {
+        this.$router.push({ name: "search", query: this.$route.query });
+      }
+    },
+
+    trademarkInfo(trademark) {
+      this.searchParams.trademark = `${trademark.tmId}:${trademark.tmName}`;
+      this.getData();
+    },
+    removeTrademark() {
+      this.searchParams.trademark = undefined;
+      this.getData();
+    },
+    attrInfo(attr, attrValue) {
+      let props = `${attr.attrId}:${attrValue}:${attr.attrName}`;
+      if (this.searchParams.props.indexOf(props) == -1) {
+        this.searchParams.props.push(props);
+      }
+      this.getData();
+    },
+    removeAttr(index) {
+      this.searchParams.props.splice(index, 1);
+      this.getData();
+    },
+    changeOrder(flag) {
+      let originFlag = this.searchParams.order.split(":")[0];
+      let originSortType = this.searchParams.order.split(":")[1];
+      //准备一个新的数值，将来赋值给order
+      let newOrder = "";
+      //高亮的判断
+      if (flag == originFlag) {
+        newOrder = `${originFlag}:${originSortType == "desc" ? "asc" : "desc"}`;
+      } else {
+        //不是高亮的按钮
+        newOrder = `${flag}:desc`;
+      }
+      //重新给order赋予新的数值
+      this.searchParams.order = newOrder;
+      //重新发一次请求
+      this.getData();
+    },
+  },
+  watch: {
+    $route(newValue, oldValue) {
+      Object.assign(this.searchParams, this.$route.query, this.$route.params);
+      this.getData();
+      this.searchParams.category1Id = undefined;
+      this.searchParams.category2Id = undefined;
+      this.searchParams.category3Id = undefined;
     },
   },
 };

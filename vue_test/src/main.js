@@ -22,6 +22,9 @@ import "swiper/css/swiper.css";
 new Vue({
 
     render: h => h(App),
+    beforeCreate() {
+        Vue.prototype.$bus = this;
+    },
     router, //Registered Routes
     // registered store
     store
