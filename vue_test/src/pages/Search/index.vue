@@ -81,9 +81,9 @@
               >
                 <div class="list-wrap">
                   <div class="p-img">
-                    <a href="item.html" target="_blank"
+                    <router-link :to="`/detail/${good.id}`"
                       ><img :src="good.defaultImg"
-                    /></a>
+                    /></router-link>
                   </div>
                   <div class="price">
                     <strong>
@@ -117,35 +117,13 @@
               </li>
             </ul>
           </div>
-          <div class="fr page">
-            <div class="sui-pagination clearfix">
-              <ul>
-                <li class="prev disabled">
-                  <a href="#">«上一页</a>
-                </li>
-                <li class="active">
-                  <a href="#">1</a>
-                </li>
-                <li>
-                  <a href="#">2</a>
-                </li>
-                <li>
-                  <a href="#">3</a>
-                </li>
-                <li>
-                  <a href="#">4</a>
-                </li>
-                <li>
-                  <a href="#">5</a>
-                </li>
-                <li class="dotted"><span>...</span></li>
-                <li class="next">
-                  <a href="#">下一页»</a>
-                </li>
-              </ul>
-              <div><span>共10页&nbsp;</span></div>
-            </div>
-          </div>
+          <Pagination
+            :pageNo="searchParams.pageNo"
+            :pageSize="searchParams.pageSize"
+            :total="total"
+            :continues="5"
+            @getPageNo="getPageNo"
+          />
         </div>
       </div>
     </div>
@@ -154,7 +132,7 @@
 
 <script>
 import SearchSelector from "./SearchSelector/SearchSelector";
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 export default {
   name: "Search",
 
@@ -171,7 +149,7 @@ export default {
         keyword: "",
         order: "1:desc",
         pageNo: 1,
-        pageSize: 10,
+        pageSize: 3,
         props: [],
         trademark: "",
       },
@@ -204,6 +182,9 @@ export default {
     isAsc() {
       return this.searchParams.order.indexOf("asc") != -1;
     },
+    ...mapState({
+      total: (state) => state.search.searchList.total,
+    }),
   },
 
   methods: {
@@ -266,14 +247,19 @@ export default {
       //重新发一次请求
       this.getData();
     },
-  },
-  watch: {
-    $route(newValue, oldValue) {
-      Object.assign(this.searchParams, this.$route.query, this.$route.params);
+    getPageNo(pageNo) {
+      this.searchParams.pageNo = pageNo;
       this.getData();
-      this.searchParams.category1Id = undefined;
-      this.searchParams.category2Id = undefined;
-      this.searchParams.category3Id = undefined;
+    },
+
+    watch: {
+      $route(newValue, oldValue) {
+        Object.assign(this.searchParams, this.$route.query, this.$route.params);
+        this.getData();
+        this.searchParams.category1Id = undefined;
+        this.searchParams.category2Id = undefined;
+        this.searchParams.category3Id = undefined;
+      },
     },
   },
 };

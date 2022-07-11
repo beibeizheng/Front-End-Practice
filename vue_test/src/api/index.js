@@ -17,6 +17,9 @@ export const reqFloorList = () => mockRequests.get('/floor')
 // get the data of search module
 export const reqGetSearchInfo = (params) => requests({ method: 'post', url: '/list', data: params })
 
+// get the data of product details information
+export const reqGoodsInfo = (skuId) => requests({ url: `/item/${skuId}`, method: "get" });
+
 
 
 
