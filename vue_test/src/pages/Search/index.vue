@@ -251,15 +251,15 @@ export default {
       this.searchParams.pageNo = pageNo;
       this.getData();
     },
+  },
 
-    watch: {
-      $route(newValue, oldValue) {
-        Object.assign(this.searchParams, this.$route.query, this.$route.params);
-        this.getData();
-        this.searchParams.category1Id = undefined;
-        this.searchParams.category2Id = undefined;
-        this.searchParams.category3Id = undefined;
-      },
+  watch: {
+    $route() {
+      this.searchParams.category1Id = undefined;
+      this.searchParams.category2Id = undefined;
+      this.searchParams.category3Id = undefined;
+      Object.assign(this.searchParams, this.$route.query, this.$route.params);
+      this.getData();
     },
   },
 };
