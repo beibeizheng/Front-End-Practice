@@ -1,8 +1,10 @@
-import { reqGoodsInfo } from "@/api";
+import { reqGoodsInfo, reqAddOrUpdateShopCart } from "@/api";
+import { getUUID } from "@/utils/uuid_token";
 
 const state = {
     goodInfo: {},
-}
+    uuid_token: getUUID()
+};
 const mutations = {
     GETGOODINFO(state, goodInfo) {
         state.goodInfo = goodInfo;
@@ -13,6 +15,15 @@ const actions = {
         let result = await reqGoodsInfo(skuId);
         if (result.code == 200) {
             commit("GETGOODINFO", result.data);
+        }
+    },
+
+    async addOrUpdateShopCart({ commit }, { skuId, skuNum }) {
+        let result = await reqAddOrUpdateShopCart(skuId, skuNum);
+        if (result.code == 200) {
+            return "success";
+        } else {
+            return Promise.reject(new Error("failed"));
         }
     },
 }

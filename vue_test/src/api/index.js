@@ -20,8 +20,11 @@ export const reqGetSearchInfo = (params) => requests({ method: 'post', url: '/li
 // get the data of product details information
 export const reqGoodsInfo = (skuId) => requests({ url: `/item/${skuId}`, method: "get" });
 
+// Add data to the shopping cart and get the number of products updated
+export const reqAddOrUpdateShopCart = (skuId, skuNum) => requests({ url: `/cart/addToCart/${skuId}/${skuNum}`, method: "post" });
 
 
-
+// Get Shopping Cart List Data Interface
+export const reqCartList = () => requests({ url: '/cart/cartList', method: "get" });
 
 
