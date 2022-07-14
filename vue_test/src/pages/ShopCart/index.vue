@@ -17,6 +17,7 @@
               type="checkbox"
               name="chk_list"
               :checked="cart.isChecked == 1"
+              @change="updateChecked(cart, $event)"
             />
           </li>
           <li class="cart-list-con2">
@@ -29,21 +30,32 @@
             <span class="price">{{ cart.skuPrice }}.00</span>
           </li>
           <li class="cart-list-con5">
-            <a href="javascript:void(0)" class="mins">-</a>
+            <a
+              href="javascript:void(0)"
+              class="mins"
+              @click="handler('minus', -1, cart)"
+              >-</a
+            >
             <input
               autocomplete="off"
               type="text"
               minnum="1"
               class="itxt"
               :value="cart.skuNum"
+              @click="handler('change', $event.target.value * 1, cart)"
             />
-            <a href="javascript:void(0)" class="plus">+</a>
+            <a
+              href="javascript:void(0)"
+              class="plus"
+              @click="handler('add', 1, cart)"
+              >+</a
+            >
           </li>
           <li class="cart-list-con6">
             <span class="sum">{{ cart.skuPrice * cart.skuNum }}</span>
           </li>
           <li class="cart-list-con7">
-            <a href="#none" class="sindelet">删除</a>
+            <a class="sindelet" @click="deleteCartById(cart)">删除</a>
             <br />
             <a href="#none">移到收藏</a>
           </li>
@@ -52,11 +64,16 @@
     </div>
     <div class="cart-tool">
       <div class="select-all">
-        <input class="chooseAll" type="checkbox" :checked="isAllCheck" />
+        <input
+          class="chooseAll"
+          type="checkbox"
+          :checked="isAllCheck && cartInfoList.length > 0"
+          @change="updateAllCheckedCart($event)"
+        />
         <span>全选</span>
       </div>
       <div class="option">
-        <a href="#none">删除选中的商品</a>
+        <a @click="deleteAllCheckedCart">删除选中的商品</a>
         <a href="#none">移到我的关注</a>
         <a href="#none">清除下柜商品</a>
       </div>
@@ -76,6 +93,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { throttle } from "lodash";
 
 export default {
   name: "ShopCart",
@@ -85,6 +103,75 @@ export default {
   methods: {
     getData() {
       this.$store.dispatch("getCartList");
+    },
+    // Modify the quantity of a product
+    handler: throttle(async function (type, disNum, cart) {
+      switch (type) {
+        case "add":
+          disNum = 1;
+          break;
+        case "minus":
+          disNum = cart.skuNum > 1 ? -1 : 0;
+          break;
+        case "change":
+          if (isNaN(disNum) || disNum < 1) {
+            disNum = 0;
+          } else {
+            disNum = parseInt(disNum) - cart.skuNum;
+          }
+          // 简写：disNum =(isNaN(disNum)||disNum<1)? 0:parseInt(disNum)-cart.skuNum;
+          break;
+      }
+      try {
+        await this.$store.dispatch("addOrUpdateShopCart", {
+          skuId: cart.skuId,
+          skuNum: disNum,
+        });
+        this.getData();
+      } catch (error) {}
+    }, 500),
+
+    // Delete a product
+    async deleteCartById(cart) {
+      try {
+        await this.$store.dispatch("deleteCartListBySkuId", cart.skuId);
+        this.getData();
+      } catch (error) {
+        alert(error.message);
+      }
+    },
+
+    // Modify the selected status of products in the shopping cart
+    async updateChecked(cart, $event) {
+      try {
+        let isChecked = event.target.checked ? "1" : "0";
+        await this.$store.dispatch("updateCheckedById", {
+          skuId: cart.skuId,
+          isChecked,
+        });
+        this.getData();
+      } catch (error) {
+        alert(error.message);
+      }
+    },
+    // Delete all selected products from the shopping cart
+    async deleteAllCheckedCart() {
+      try {
+        await this.$store.dispatch("deleteAllCheckedCart");
+        this.getData();
+      } catch (error) {
+        alert(error.message);
+      }
+    },
+    // Modify the Select All function in the shopping cart
+    async updateAllCheckedCart(event) {
+      try {
+        let isChecked = event.target.checked ? "1" : "0";
+        await this.$store.dispatch("updateAllCartIsChecked", isChecked);
+        this.getData();
+      } catch (error) {
+        alert(error.message);
+      }
     },
   },
   computed: {

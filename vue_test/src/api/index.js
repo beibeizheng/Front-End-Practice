@@ -27,4 +27,10 @@ export const reqAddOrUpdateShopCart = (skuId, skuNum) => requests({ url: `/cart/
 // Get Shopping Cart List Data Interface
 export const reqCartList = () => requests({ url: '/cart/cartList', method: "get" });
 
+// Interface for deleting products from the shopping cart
+export const reqDeleteCartById = (skuId) => requests({ url: `/cart/deleteCart/${skuId}`, method: "delete" });
+
+// Interface for modifying the selected status of shopping cart products
+export const reqUpdateCheckedById = (skuId, isChecked) => requests({ url: `/cart/checkCart/${skuId}/${isChecked}`, method: "get" });
+
 
