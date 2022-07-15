@@ -33,4 +33,17 @@ export const reqDeleteCartById = (skuId) => requests({ url: `/cart/deleteCart/${
 // Interface for modifying the selected status of shopping cart products
 export const reqUpdateCheckedById = (skuId, isChecked) => requests({ url: `/cart/checkCart/${skuId}/${isChecked}`, method: "get" });
 
+// Interface for receiving verification codes in the registration screen
+export const reqGetCode = (phone) => requests({ url: `/user/passport/sendCode/${phone}`, method: "get" });
 
+// Data interface to the registration screen
+export const reqUserRegister = (data) => requests({ url: '/user/passport/register', data, method: "post" });
+
+// Data interface to the login page
+export const reqUserLogin = (data) => requests({ url: '/user/passport/login', data, method: "post" });
+
+// Data interface for obtaining user information after successful login
+export const reqUserInfo = () => requests({ url: '/user/passport/auth/getUserInfo', method: "get" });
+
+// Log out
+export const reqLogout = () => requests({ url: '/user/passport/logout', method: "get" });

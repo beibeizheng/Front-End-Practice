@@ -24,6 +24,7 @@ export default {
   mounted() {
     // use action to get floor's data
     this.$store.dispatch("getFloorList");
+    this.$store.dispatch("getUserInfo");
   },
   computed: {
     ...mapState({

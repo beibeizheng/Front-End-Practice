@@ -6,12 +6,16 @@
       <div class="container">
         <div class="loginList">
           <p>尚品汇欢迎您！</p>
-          <p>
+          <p v-if="!userName">
             <span>请</span>
             <router-link to="/login">Login</router-link>
             <router-link class="register" to="/register"
               >Free Register</router-link
             >
+          </p>
+          <p v-else>
+            <a>{{ userName }}</a>
+            <a class="register" @click="logout">Logout</a>
           </p>
         </div>
         <div class="typeList">
@@ -73,6 +77,12 @@ export default {
         this.$router.push(location);
       }
     },
+    async logout() {
+      try {
+        await this.$store.dispatch("userLogout");
+        this.$router.push("/home");
+      } catch (error) {}
+    },
   },
   mounted() {
     // Clear keywords from the search bar
@@ -80,8 +90,14 @@ export default {
       this.keyword = "";
     });
   },
+  computed: {
+    userName() {
+      return this.$store.state.user.userInfo.name;
+    },
+  },
 };
 </script>
+
 <style scoped lang="less">
 .header {
   & > .top {
