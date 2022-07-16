@@ -47,3 +47,16 @@ export const reqUserInfo = () => requests({ url: '/user/passport/auth/getUserInf
 
 // Log out
 export const reqLogout = () => requests({ url: '/user/passport/logout', method: "get" });
+
+
+// Obtain user address information
+export const reqAddressInfo = () => requests({ url: '/user/userAddress/auth/findUserAddressList', method: "get" });
+
+// Get a list of users' shopping carts
+export const reqOrderInfo = () => requests({ url: '/order/auth/trade', method: "get" });
+
+// Data interface for order submission
+export const reqSubmitOrder = (tradeNo, data) => requests({ url: `/order/auth/submitOrder?tradeNo=${tradeNo}`, data, method: "post" });
+
+// Get payment information
+export const reqPayInfo = (orderId) => requests({ url: `/payment/weixin/createNative/${orderId}`, method: "get" });

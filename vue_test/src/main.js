@@ -21,11 +21,15 @@ import "@/mock/mockServe";
 import "swiper/css/swiper.css";
 // import {reqGetSearchInfo} from "@/api";
 
+// Request all data interfaces in the api folder
+import * as API from "@/api";
 new Vue({
 
     render: h => h(App),
     beforeCreate() {
         Vue.prototype.$bus = this;
+        Vue.prototype.$API = API;
+
     },
     router, //Registered Routes
     // registered store
