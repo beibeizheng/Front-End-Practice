@@ -76,7 +76,7 @@
         <div class="hr"></div>
 
         <div class="submit">
-          <a class="btn" @click="getPayInfo">立即支付</a>
+          <a class="btn" @click="open">立即支付</a>
         </div>
         <div class="otherpay">
           <div class="step-tit">
@@ -93,11 +93,14 @@
 </template>
 
 <script>
+import QRCode from "qrcode";
 export default {
   name: "Pay",
   data() {
     return {
       payInfo: {},
+      timer: null,
+      code: "",
     };
   },
   computed: {
@@ -111,9 +114,49 @@ export default {
   methods: {
     async getPayInfo() {
       let result = await this.$API.reqPayInfo(this.orderId);
-      console.log(result);
+
       if (result.code == 200) {
         this.payInfo = result.data;
+      }
+    },
+    async open() {
+      let url = await QRCode.toDataURL(this.payInfo.codeUrl);
+      this.$alert(`<img src=${url}>`, "请你微信扫码支付", {
+        dangerouslyUseHTMLString: true,
+        center: true, //居中
+        showClose: false, //右上角的关闭按钮不显示
+        confirmButtonText: "支付成功", //确定按钮的文本
+        showCancelButton: true, //显示取消按钮
+        cancelButtonText: "支付遇见问题", //取消按钮的文本
+        beforeClose: (type, instance, done) => {
+          if (type == "cancel") {
+            alert("Please contact the admin:Mrs Zheng");
+            clearInterval(this.timer);
+            this.timer = null;
+            done();
+          } else {
+            // if (this.code ==200){
+            clearInterval(this.timer);
+            this.timer = null;
+            done();
+            this.$router.push("/paysuccess").catch(() => {});
+            // }
+          }
+        },
+      });
+
+      if (!this.timer) {
+        this.timer = setInterval(async () => {
+          let result = await this.$API.reqPayStatus(this.orderId);
+
+          if (result.code == 200) {
+            clearInterval(this.timer);
+            this.timer = null;
+            this.code = result.code;
+            this.$msgbox.close();
+            this.$router.push("/paysuccess").catch(() => {});
+          }
+        }, 1000);
       }
     },
   },

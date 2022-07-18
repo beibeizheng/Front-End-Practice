@@ -117,8 +117,8 @@ export default {
   name: "Trade",
   data() {
     return {
-      msg: "",
-      orderId: "",
+      msg: "",// 买家留言
+      orderId: "",// 订单号
     };
   },
 
@@ -141,8 +141,11 @@ export default {
       addressInfo.forEach((item) => (item.isDefault = 0));
       address.isDefault = 1;
     },
+     // 提交订单，路由跳转至支付页面，跳之前向服务器发请求
     async submitOrder() {
+      // 参数：交易编码
       let { tradeNo } = this.orderInfo;
+      // 参数：向服务器传用户选择的各种数据
       let data = {
         consignee: this.userDefaultAddress.consignee, //付款人的名字
         consigneeTel: this.userDefaultAddress.phoneNum, //付款人的手机号
@@ -151,8 +154,10 @@ export default {
         orderComment: this.msg, //买家留言
         orderDetailList: this.orderInfo.detailArrayList, //购物车商品信息
       };
+       // 向服务器发请求
       let result = await this.$API.reqSubmitOrder(tradeNo, data);
       if (result.code == 200) {
+        // 如果请求成功，则存订单号以供跳转至支付页面使用
         this.orderId = result.data;
         this.$router.push("/pay?orderId=" + this.orderId);
       } else {

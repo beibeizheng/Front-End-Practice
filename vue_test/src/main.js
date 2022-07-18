@@ -23,6 +23,19 @@ import "swiper/css/swiper.css";
 
 // Request all data interfaces in the api folder
 import * as API from "@/api";
+
+
+import { MessageBox } from 'element-ui';
+
+Vue.prototype.$msgbox = MessageBox;
+Vue.prototype.$alert = MessageBox.alert;
+
+import VueLazyload from 'vue-lazyload'
+import lazyImg from '@/assets/whale.gif';
+Vue.use(VueLazyload, {
+    loading: lazyImg
+});
+
 new Vue({
 
     render: h => h(App),

@@ -60,3 +60,9 @@ export const reqSubmitOrder = (tradeNo, data) => requests({ url: `/order/auth/su
 
 // Get payment information
 export const reqPayInfo = (orderId) => requests({ url: `/payment/weixin/createNative/${orderId}`, method: "get" });
+
+// Get order payment status
+export const reqPayStatus = (orderId) => requests({ url: `/payment/weixin/queryPayStatus/${orderId}`, method: "get" });
+
+// Get data in the Personal Centre
+export const reqMyOrderList = (page, limit) => requests({ url: `/order/auth/${page}/${limit}`, method: "get" });
