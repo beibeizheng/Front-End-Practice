@@ -9,10 +9,9 @@
         <img :src="carousel.imgUrl" />
       </div>
     </div>
-    <!-- 如果需要分页器 -->
+    <!-- If need the pagination -->
     <div class="swiper-pagination"></div>
 
-    <!-- 如果需要导航按钮 -->
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
   </div>
@@ -29,15 +28,15 @@ export default {
       handler() {
         this.$nextTick(() => {
           var mySwiper = new Swiper(this.$refs.floor1Swiper, {
-            loop: true, // 循环模式选项
+            loop: true, // Loop mode options
 
-            // 如果需要分页器
+            // If need the pagination
             pagination: {
               el: ".swiper-pagination",
               clickable: true,
             },
 
-            // 如果需要前进后退按钮
+            //If you need a forward/backward button
             navigation: {
               nextEl: ".swiper-button-next",
               prevEl: ".swiper-button-prev",

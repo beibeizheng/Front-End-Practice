@@ -1,13 +1,13 @@
 <template>
-  <!-- 头部 -->
+  <!--HEADER -->
   <header class="header">
-    <!-- 头部的第一行 -->
+    <!-- First row of the header -->
     <div class="top">
       <div class="container">
         <div class="loginList">
-          <p>尚品汇欢迎您！</p>
+          <p>Welcome to our website</p>
           <p v-if="!userName">
-            <span>请</span>
+            <span>Please</span>
             <router-link to="/login">Login</router-link>
             <router-link class="register" to="/register"
               >Free Register</router-link
@@ -19,21 +19,18 @@
           </p>
         </div>
         <div class="typeList">
-          <router-link to="/center/myorder">我的订单</router-link>
-          <router-link to="shopcart">我的购物车</router-link>
-          <a href="###">我的尚品汇</a>
-          <a href="###">尚品汇会员</a>
-          <a href="###">企业采购</a>
-          <a href="###">关注尚品汇</a>
-          <a href="###">合作招商</a>
-          <a href="###">商家后台</a>
+          <router-link to="/center/myorder">My Orders</router-link>
+          <router-link to="shopcart">My Shopping Cart</router-link>
+          <a href="###">Corporate Procurement</a>
+          <a href="###">Partnerships</a>
+          <a href="###">Merchant Back Office</a>
         </div>
       </div>
     </div>
-    <!--头部第二行 搜索区域-->
+    <!--the second line of header Search area-->
     <div class="bottom">
       <h1 class="logoArea">
-        <router-link class="logo" to="/home" title="尚品汇">
+        <router-link class="logo" to="/home" title="logo">
           <img src="./images/logo.png" alt="" />
         </router-link>
       </h1>
@@ -50,7 +47,7 @@
             type="button"
             @click="goSearch"
           >
-            搜索
+            Search
           </button>
         </form>
       </div>

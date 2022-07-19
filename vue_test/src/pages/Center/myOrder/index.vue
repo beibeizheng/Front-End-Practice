@@ -2,18 +2,18 @@
   <div class="order-right">
     <div class="order-content">
       <div class="title">
-        <h3>我的订单</h3>
+        <h3>My Orders</h3>
       </div>
       <div class="chosetype">
         <table>
           <thead>
             <tr>
-              <th width="29%">商品</th>
-              <th width="31%">订单详情</th>
-              <th width="13%">收货人</th>
-              <th>金额</th>
-              <th>状态</th>
-              <th>操作</th>
+              <th width="29%">Products</th>
+              <th width="31%">Order Details</th>
+              <th width="13%">Consignee</th>
+              <th>Prices</th>
+              <th>Status</th>
+              <th>Operation</th>
             </tr>
           </thead>
         </table>
@@ -28,7 +28,7 @@
             <tr>
               <th colspan="5">
                 <span class="ordertitle"
-                  >{{ order.createTime }}　订单编号：{{ order.outTradeNo }}
+                  >{{ order.createTime }}　Order Number:{{ order.outTradeNo }}
                   <span class="pull-right delete"
                     ><img src="../images/delete.png" /></span
                 ></span>
@@ -42,7 +42,7 @@
                   <img style="width: 100px; height: 100px" :src="cart.imgUrl" />
                   <a href="#" class="block-text">{{ cart.skuName }}</a>
                   <span>x{{ cart.skuNum }}</span>
-                  <a href="#" class="service">售后申请</a>
+                  <a href="#" class="service">After Sales Request</a>
                 </div>
               </td>
               <td
@@ -60,8 +60,8 @@
                 class="center"
               >
                 <ul class="unstyled">
-                  <li>总金额¥{{ order.totalAmount }}.00</li>
-                  <li>在线支付</li>
+                  <li>Total amount ${{ order.totalAmount }}.00</li>
+                  <li>Online Payment</li>
                 </ul>
               </td>
               <td
@@ -80,7 +80,7 @@
               >
                 <ul class="unstyled">
                   <li>
-                    <a href="mycomment.html" target="_blank">评价|晒单</a>
+                    <a href="mycomment.html" target="_blank">Reviews</a>
                   </li>
                 </ul>
               </td>
@@ -98,9 +98,9 @@
         />
       </div>
     </div>
-    <!--猜你喜欢-->
+    <!--LIKES-->
     <div class="like">
-      <h4 class="kt">猜你喜欢</h4>
+      <h4 class="kt">Guess Your Favourite</h4>
       <ul class="like-list">
         <li class="likeItem">
           <div class="p-img">

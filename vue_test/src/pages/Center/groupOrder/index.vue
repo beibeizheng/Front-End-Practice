@@ -1,5 +1,5 @@
 <template>
-  <p>我是团购订单页面</p>
+  <h1>This is a group order page</h1>
 </template>
 
 <script>

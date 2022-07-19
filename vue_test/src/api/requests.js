@@ -1,9 +1,9 @@
 import axios from "axios";
-//引入进度条
+//introduce the progress bar
 import nprogress from 'nprogress';
-// 在当前模块中引入store
+// introduce the store
 import store from "@/store";
-//引入相关进度条的样式
+//introduce the style of the progress bar
 import "nprogress/nprogress.css";
 
 const requests = axios.create({
@@ -18,18 +18,18 @@ requests.interceptors.request.use((config) => {
     if (store.state.user.token) {
         config.headers.token = store.state.user.token;
     }
-    //进度条开始
+    //start the progress bar
     nprogress.start();
     return config;
 });
-//响应拦截器：请求数据返回会执行
+///response interceptor: request data return will be executed
 requests.interceptors.response.use((res) => {
-    //res:实质就是项目中发请求、服务器返回的数据
-    //进度条结束
+    //res:In essence, it is the data that is requested in the project and returned by the server
+    //end of the progress bar
     nprogress.done();
     return res.data;
 }, (error) => {
-    //温馨提示:某一天发请求,请求失败,请求失败的信息打印出来
+    //Warm Tips: Send a request on one day, request failed, request failed message printed out
     console.log("Response failed" + error)
     return Promise.reject(new Error('fail'));
 });

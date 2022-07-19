@@ -1,7 +1,7 @@
 <template>
   <div class="pagination">
     <button :disabled="pageNo == 1" @click="$emit('getPageNo', pageNo - 1)">
-      上一页
+      Previous
     </button>
     <button
       v-if="startNumAndEndNum.start > 1"
@@ -30,9 +30,9 @@
     >
       {{ totalPage }}
     </button>
-    <button :disabled="pageNo == totalPage">下一页</button>
+    <button :disabled="pageNo == totalPage">Next</button>
 
-    <button style="margin-left: 30px">共 {{ total }} 条</button>
+    <button style="margin-left: 30px">total {{ total }} records</button>
   </div>
 </template>
 

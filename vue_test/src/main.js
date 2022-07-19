@@ -36,6 +36,8 @@ Vue.use(VueLazyload, {
     loading: lazyImg
 });
 
+import "@/plugins/validate";
+
 new Vue({
 
     render: h => h(App),
